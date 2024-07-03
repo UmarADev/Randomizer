@@ -14,16 +14,16 @@ namespace Randomizer
                 {
                     Console.WriteLine("Which service do you want to use?");
 
-                    Console.WriteLine("1. Full name generator");
-                    Console.WriteLine("2. Email address generator");
-                    Console.WriteLine("3. Integer range generator");
-                    Console.WriteLine("4. Lorem ipsum text generator");
+                    Console.WriteLine("1. Random Full name");
+                    Console.WriteLine("2. Random Email address");
+                    Console.WriteLine("3. Random Integer range");
+                    Console.WriteLine("4. Random Lorem ipsum text");
                     Console.Write("Your choice: ");
 
                     string userChoice = Console.ReadLine();
                     int convertUserChoice = Convert.ToInt32(userChoice);
 
-                    Console.WriteLine("How many random do you want it to generate?");
+                    Console.WriteLine("How many random do you want to generate?");
                     Console.Write("Enter the value: ");
 
                     string userInput = Console.ReadLine();

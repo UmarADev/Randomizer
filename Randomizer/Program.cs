@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Randomizer.Services;
+using System;
 using Tynamix.ObjectFiller;
 
 namespace Randomizer
@@ -7,6 +8,8 @@ namespace Randomizer
     {
         static void Main(string[] args)
         {
+            RandomGeneratorServices randomGeneratorServices = new RandomGeneratorServices();
+
             string isContinue;
             do
             {
@@ -33,12 +36,12 @@ namespace Randomizer
                     {
                         case 1:
 
-                            GenerateFullName(count: userInputValue);
+                            randomGeneratorServices.GenerateFullName(userInputValue);
                             break;
 
                         case 2:
 
-                            GenerateEmailAddress(count: userInputValue);
+                            randomGeneratorServices.GenerateEmailAddress(count: userInputValue);
                             break;
 
                         case 3:
@@ -50,7 +53,7 @@ namespace Randomizer
                             Console.Write("Enter a random ending value: ");
                             string userInputMaxValue = Console.ReadLine();
                             int userMaxValue = Convert.ToInt32(userInputMaxValue);
-                            GenerateIntRange(count: userInputValue, min: userMinValue, max: userMaxValue);
+                            randomGeneratorServices.GenerateIntRange(count: userInputValue, min: userMinValue, max: userMaxValue);
                             break;
 
                         case 4:
@@ -59,7 +62,7 @@ namespace Randomizer
                             Console.WriteLine("How many words do you need?");
                             string userInputText = Console.ReadLine();
                             int userTextValue = Convert.ToInt32(userInputText);
-                            GenerateLoremIpsum(count: userInputValue, numberOfWords: userTextValue);
+                            randomGeneratorServices.GenerateLoremIpsum(count: userInputValue, numberOfWords: userTextValue);
                             break;
                     }
                 }
@@ -74,58 +77,6 @@ namespace Randomizer
             } while (isContinue.ToLower() == "y");
 
             Console.WriteLine("Thank you!");
-        }
-
-        static void GenerateFullName(int count)
-        {
-            RealNames realNameGenerator = new RealNames();
-
-            Console.WriteLine("There are some fullnames:\n");
-
-            for (int i = 0; i < count; i++)
-            {
-                string fullNameRandom = realNameGenerator.GetValue();
-                Console.WriteLine(fullNameRandom);
-            }
-        }
-
-        static void GenerateEmailAddress(int count)
-        {
-            EmailAddresses emailGenerator = new EmailAddresses();
-
-            Console.WriteLine("There are some email adresses:\n");
-
-            for (int i = 0; i < count; i++)
-            {
-                string emailRandom = emailGenerator.GetValue();
-                Console.WriteLine(emailRandom);
-            }
-        }
-
-        static void GenerateIntRange(int count, int min, int max)
-        {
-            IntRange intGenerator = new IntRange(min: min, max: max);
-
-            Console.WriteLine("There are some random numbers:\n");
-
-            for (int i = 0; i < count; i++)
-            {
-                int intRandom = intGenerator.GetValue();
-                Console.WriteLine(intRandom);
-            }
-        }
-
-        static void GenerateLoremIpsum(int count, int numberOfWords)
-        {
-            Lipsum lipsumGenerator = new Lipsum(LipsumFlavor.ChildHarold, minWords: numberOfWords);
-
-            Console.WriteLine("There are some random texts:\n");
-
-            for (int i = 0; i < count; i++)
-            {
-                string lipsumRandom = lipsumGenerator.GetValue();
-                Console.WriteLine(lipsumRandom);
-            }
         }
     }
 }
